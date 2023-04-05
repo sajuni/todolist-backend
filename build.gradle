@@ -31,7 +31,3 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-task gradleWrapper(type: Wrapper) {
-	gradleVersion = '6.8.3'
-}
