@@ -1,14 +1,11 @@
 package com.example.todolist.todo.controller;
 
 import com.example.todolist.todo.dto.TodoReqDto;
-import com.example.todolist.todo.dto.TodoResDto;
 import com.example.todolist.todo.service.TodoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/api/todo")
@@ -22,4 +19,8 @@ public class TodoController {
         return new ResponseEntity<>(todoService.save(req), HttpStatus.CREATED);
     }
 
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestParam String status) {
+        return new ResponseEntity<>(todoService.update(id, status), HttpStatus.OK);
+    }
 }
