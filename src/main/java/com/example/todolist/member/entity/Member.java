@@ -21,7 +21,7 @@ public class Member {
 
     private String name;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Todo> todoList = new ArrayList<>();
 
 }

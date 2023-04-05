@@ -15,7 +15,6 @@ import javax.persistence.*;
 @Builder
 @Entity
 public class Todo {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "todo_id")
@@ -27,9 +26,8 @@ public class Todo {
     @Builder.Default
     private TodoStatus status = TodoStatus.CREATE;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-
 
 }
