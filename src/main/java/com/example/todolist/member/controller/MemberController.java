@@ -15,12 +15,27 @@ public class MemberController {
 
     @PostMapping("/save")
     public ResponseEntity<?> save(@RequestParam String name) {
-        return new ResponseEntity<>(memberService.save(name), HttpStatus.CREATED);
+        try {
+            return new ResponseEntity<>(memberService.save(name), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getMember(@PathVariable Long id) {
         return new ResponseEntity<>(memberService.getMember(id), HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> getAllMember() {
+        return new ResponseEntity<>(memberService.getAllMember(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteMember(@PathVariable Long id) {
+        memberService.deleteMember(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

@@ -23,4 +23,10 @@ public class TodoController {
     public ResponseEntity<?> updateStatus(@PathVariable Long id, @RequestParam String status) {
         return new ResponseEntity<>(todoService.update(id, status), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteTodoList(@PathVariable Long id) {
+        todoService.deleteTodoList(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

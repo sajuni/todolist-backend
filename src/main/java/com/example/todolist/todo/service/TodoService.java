@@ -10,16 +10,17 @@ import com.example.todolist.todo.util.TodoStatus;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+@Transactional
 @RequiredArgsConstructor
 @Service
 public class TodoService {
 
     private final TodoRepository todoRepository;
     private final MemberRepository memberRepository;
-
     private final ModelMapper modelMapper;
 
     public TodoResDto save(TodoReqDto req) {
@@ -44,4 +45,7 @@ public class TodoService {
         throw new RuntimeException("Todo 저장에 실패 했습니다.");
     }
 
+    public void deleteTodoList(Long id) {
+        todoRepository.deleteTodoListByMemberId(id);
+    }
 }
