@@ -11,7 +11,6 @@ import java.util.List;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Member findByName(String name);
 
-
-    @Query("select m from Member m left join fetch m.todoList")
+    @Query("SELECT DISTINCT m FROM Member m LEFT JOIN FETCH m.todoList ORDER BY m.id")
     List<Member> findAllTodoList();
 }
