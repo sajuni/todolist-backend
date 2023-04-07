@@ -47,7 +47,7 @@ public class MemberService {
     }
 
     public List<MemberDto> getAllMember() {
-        List<Member> all = memberRepository.findAll();
+        List<Member> all = memberRepository.findAllTodoList();
         Type listType = new TypeToken<List<MemberDto>>() {}.getType();
         return modelMapper.map(all, listType);
     }
